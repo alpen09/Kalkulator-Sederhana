@@ -7,7 +7,7 @@ const updateScreen = (number) => {
 const numbers =document.querySelectorAll (".number")
 
 numbers.forEach ((number)=>{
-    number.addEventListener("click",(event)=>{
+    number.addEventListener("click", (event) => {
         inputNumber(event.target.value)
         updateScreen(currentNumber)
     })
@@ -41,7 +41,7 @@ const inputOperator = (operator) => {
     currentNumber ='0'
 }
 
-const equalSign = document.querySelector('.equalSign')
+const equalSign = document.querySelector('.equal-Sign')
 
 equalSign.addEventListener('click', () =>{
     calculate()
@@ -63,6 +63,9 @@ const calculate = () =>{
         case "/":
             result = prevNumber / currentNumber
             break
+        case "%":
+            result = prevNumber/100
+            break
         default:
             return
     }
@@ -81,6 +84,19 @@ const clearAll = () => {
     prevNumber=''
     calculationOperator=''
     currentNumber= '0'
+}
+
+const delBtn =document.querySelector('.delete')
+
+delBtn.addEventListener('click',() => {
+    delBefore()
+    updateScreen(currentNumber)
+})
+    
+const delBefore = () => {
+    prevNumber = ''
+     calculationOperator = ''
+    currentNumber = currentNumber.slice(0,-1)
 }
 
 const decimal = document.querySelector('.decimal')
